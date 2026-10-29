@@ -5,3 +5,37 @@
 body.light .brand{color:#000}
 body.light #dot-logo circle{fill:#000}
 body.light #dot-logo circle[fill="#ffffff07"]{fill:#00000008}
+
+/* Spacious chapters and a scroll-driven introduction. */
+html{scroll-padding-top:0}
+.hero{display:block;height:180svh;min-height:0;padding:0;overflow:clip;overflow-clip-margin:1px}
+.hero-stage{position:sticky;top:0;min-height:calc(100svh - 94px);display:grid;grid-template-columns:1.02fr 1fr;align-items:center;gap:40px;padding:65px 0 90px}
+/* clip must not establish a scrolling container around the sticky scene. */
+.hero-art{height:clamp(410px,53svh,620px);perspective:900px}
+.core{transform-style:preserve-3d;will-change:transform}
+.hero-copy{will-change:translate,opacity}
+.scroll-cue{position:absolute;bottom:28px;left:0;display:flex;align-items:center;gap:15px;color:var(--muted);font:8px var(--mono);letter-spacing:1.4px}
+.scroll-cue>span:last-child{font-size:17px;color:var(--purple)}
+.scroll-track{height:1px;width:70px;background:var(--line);position:relative;overflow:hidden}
+.scroll-track i{position:absolute;left:0;top:0;bottom:0;width:25px;background:var(--purple);animation:scroll-hint 2.6s ease-in-out infinite}
+@keyframes scroll-hint{0%{translate:-26px 0}65%,100%{translate:72px 0}}
+.applications{min-height:100svh;padding:clamp(70px,10svh,130px) 0;display:flex;flex-direction:column;justify-content:center}
+.section-heading{margin-bottom:clamp(30px,5svh,65px)}
+.app-grid{gap:24px;perspective:1200px}
+.card-art{height:clamp(193px,24svh,270px)}
+.philosophy{min-height:100svh;margin-top:0;padding:100px 0;align-items:center;gap:65px}
+.philosophy h2{font-size:clamp(35px,4.2vw,62px);letter-spacing:-2px}
+.principles{gap:48px}
+.principles h3{font-size:16px}.principles p{font-size:13px;line-height:1.9}
+.chapter-nav{position:fixed;right:18px;top:50%;translate:0 -50%;z-index:8;display:flex;flex-direction:column;gap:22px;margin:0}
+.chapter-nav a{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:5px 0;color:var(--muted)}
+.chapter-nav span{font:7px var(--mono);opacity:0;transition:opacity .3s}
+.chapter-nav i{width:5px;height:5px;border-radius:50%;border:1px solid var(--muted);transition:background .3s,scale .3s}
+.chapter-nav a[aria-current] i{background:var(--purple);border-color:var(--purple);scale:1.35}
+.chapter-nav a[aria-current] span,.chapter-nav a:hover span,.chapter-nav a:focus-visible span{opacity:1}
+.motion-ready .app-card{animation:none;opacity:var(--reveal,1);translate:0 calc((1 - var(--reveal,1))*70px);transition:transform .35s,border-color .35s,box-shadow .35s}
+.motion-ready .section-heading,.motion-ready .philosophy-title,.motion-ready .principles article{animation:none;opacity:var(--reveal,1);translate:0 calc((1 - var(--reveal,1))*45px)}
+@media(max-width:1050px){.hero-stage{gap:25px}.chapter-nav{right:9px}.chapter-nav span{display:none}.app-grid{gap:14px}.philosophy{gap:40px}}
+@media(max-width:760px){.hero{height:175svh}.hero-stage{min-height:calc(100svh - 78px);grid-template-columns:1fr;align-content:center;gap:28px;padding:35px 0 70px}.hero-art{height:clamp(245px,36svh,370px)}.hero-copy{padding:0 4px}.hero .eyebrow{margin-bottom:18px}.hero h1{font-size:clamp(37px,8vw,58px)}.hero-description{margin-bottom:20px}.scroll-cue{bottom:21px;font-size:6px;gap:10px}.scroll-track{width:42px}.applications{padding:75px 0;min-height:100svh}.section-heading{margin-bottom:35px}.app-grid{gap:30px}.app-card{min-height:70svh;justify-content:space-between}.card-art{height:clamp(210px,31svh,300px)}.card-content{margin-top:auto}.philosophy{padding:90px 0;gap:55px;align-content:center}.philosophy h2{font-size:38px;letter-spacing:-1.5px}.principles{gap:35px}.principles h3{font-size:14px}.principles p{font-size:12px}.chapter-nav{display:none}}
+@media(max-width:760px) and (max-height:720px){.hero-stage{gap:18px;padding-top:20px}.hero-art{height:215px}.hero .eyebrow{margin-bottom:12px}.hero h1{font-size:36px;margin-bottom:15px}.hero-description{font-size:12px;line-height:1.6;margin-bottom:15px}}
+@media(prefers-reduced-motion:reduce){.hero{height:auto}.core,.hero-copy{will-change:auto}.motion-ready .app-card,.motion-ready .section-heading,.motion-ready .philosophy-title,.motion-ready .principles article{opacity:1;translate:none}}

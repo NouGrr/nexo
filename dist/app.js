@@ -18,3 +18,40 @@ $('#search-open').addEventListener('click',openSearch);$('#search-close').addEve
 dialog.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();selected=(selected+(e.key==='ArrowDown'?1:-1)+filtered.length)%Math.max(1,filtered.length);renderResults()}if(e.key==='Enter'&&e.target===input&&filtered[selected]){e.preventDefault();$('#search-results').children[selected].click()}});
 document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();if(dialog.open)dialog.close();else openSearch();return}if(dialog.open||e.metaKey||e.ctrlKey||e.altKey||e.target.closest('input,textarea,[contenteditable]'))return;const index=['1','2','3'].indexOf(e.key);if(index>=0){e.preventDefault();document.querySelector('[data-app="'+apps[index].id+'"]').click()}});
 $('#back-top').addEventListener('click',()=>window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'}));
+
+// Native scrolling drives the scene; wheel, touch and keyboard keep their usual behavior.
+const motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
+const intro=$('.hero'),introStage=$('.hero-stage'),logo=$('.core'),introCopy=$('.hero-copy');
+const chapters=[intro,$('#applications'),$('#philosophie')];
+const chapterLinks=[...document.querySelectorAll('.chapter-nav a')];
+const reveals=[...document.querySelectorAll('.section-heading,.app-card,.philosophy-title,.principles article')];
+let framePending=false;
+const clamp=(value,min=0,max=1)=>Math.max(min,Math.min(max,value));
+function updateScrollScene(){
+  framePending=false;
+  const viewport=window.innerHeight;
+  const introRect=intro.getBoundingClientRect();
+  const progress=clamp(-introRect.top/Math.max(1,intro.offsetHeight-introStage.offsetHeight));
+  const reduced=motionPreference.matches;
+  document.body.classList.toggle('motion-ready',!reduced);
+  logo.style.transform=reduced?'':`translate(-50%,-50%) rotateY(${progress*360}deg) rotateZ(${Math.sin(progress*Math.PI)*-8}deg)`;
+  introCopy.style.translate=reduced?'':`0 ${-progress*32}px`;
+  introCopy.style.opacity=reduced?'':String(1-progress*.45);
+  for(const element of reveals){
+    const rect=element.getBoundingClientRect();
+    const index=element.classList.contains('app-card')?[...element.parentElement.children].indexOf(element):0;
+    const stagger=window.innerWidth>760?index*35:0;
+    const value=clamp((viewport*.94-rect.top-stagger)/Math.min(230,viewport*.3));
+    // Keep focused links readable even if reached by keyboard before scrolling settles.
+    element.style.setProperty('--reveal',reduced||element.contains(document.activeElement)?'1':value.toFixed(3));
+  }
+  let active=0;
+  chapters.forEach((chapter,index)=>{if(chapter.getBoundingClientRect().top<=viewport*.45)active=index});
+  chapterLinks.forEach((link,index)=>{if(index===active)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current')});
+}
+function requestScrollScene(){if(!framePending){framePending=true;requestAnimationFrame(updateScrollScene)}}
+addEventListener('scroll',requestScrollScene,{passive:true});
+addEventListener('resize',requestScrollScene);
+addEventListener('focusin',requestScrollScene);
+motionPreference.addEventListener('change',requestScrollScene);
+updateScrollScene();
