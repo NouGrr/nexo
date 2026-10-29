@@ -4,7 +4,7 @@ const $=s=>document.querySelector(s);
 const storage={get(key){try{return localStorage.getItem('nexo-'+key)}catch{return null}},set(key,value){try{localStorage.setItem('nexo-'+key,value)}catch{}}};
 const letters={N:['10001','11001','11001','10101','10011','10011','10001'],E:['11111','10000','10000','11110','10000','10000','11111'],X:['10001','10001','01010','00100','01010','10001','10001'],O:['01110','10001','10001','10001','10001','10001','01110']};
 const ns='http://www.w3.org/2000/svg';
-'NEXO'.split('').forEach((l,i)=>letters[l].forEach((row,y)=>row.split('').forEach((on,x)=>{const circle=document.createElementNS(ns,'circle');circle.setAttribute('cx',14+i*82+x*13);circle.setAttribute('cy',7+y*9);circle.setAttribute('r','3');circle.setAttribute('fill',on==='1'?'#d8c9f0':'#ffffff07');$('#dot-logo').appendChild(circle)})));
+'NEXO'.split('').forEach((l,i)=>letters[l].forEach((row,y)=>row.split('').forEach((on,x)=>{const circle=document.createElementNS(ns,'circle');circle.setAttribute('cx',14+i*82+x*13);circle.setAttribute('cy',7+y*9);circle.setAttribute('r','3');circle.setAttribute('class',on==='1'?'logo-dot':'logo-grid');circle.setAttribute('fill',on==='1'?'#d8c9f0':'#ffffff07');$('#dot-logo').appendChild(circle)})));
 function updateTheme(light){document.body.classList.toggle('light',light);$('#theme').setAttribute('aria-label',light?'Activer le thème sombre':'Activer le thème clair');document.querySelector('meta[name="theme-color"]').content=light?'#f1f0ec':'#101116';storage.set('theme',light?'light':'dark')}
 updateTheme(storage.get('theme')==='light');$('#theme').addEventListener('click',()=>updateTheme(!document.body.classList.contains('light')));
 function remember(app){storage.set('recent',app.id);showRecent(app)}
