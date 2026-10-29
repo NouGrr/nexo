@@ -8,7 +8,7 @@
 
 ## Site
 
-https://nougrr.github.io/nexo/
+- [NEXO](https://nougrr.github.io/nexo/) - Tous vos outils. Un seul univers
 
 Portail responsive avec animations, thème clair/sombre, recherche (Ctrl/⌘ K), raccourcis 1/2/3 et mémorisation de la dernière application ouverte.
 
