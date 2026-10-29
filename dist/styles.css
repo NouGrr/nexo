@@ -3,5 +3,5 @@
 
 /* NEXO lettering follows the selected theme. */
 body.light .brand{color:#000}
-body.light #dot-logo .logo-dot{fill:#000}
-body.light #dot-logo .logo-grid{fill:#00000008}
+body.light #dot-logo circle{fill:#000}
+body.light #dot-logo circle[fill="#ffffff07"]{fill:#00000008}
