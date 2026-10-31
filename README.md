@@ -6,12 +6,13 @@
 - [Doxo](https://nougrr.github.io/doxo/) — Modification de PDF
 - [Vixo](https://nougrr.github.io/vixo-editor/) — Montage vidéo simplifié
 - [Converxo](https://nougrr.github.io/converxo/) — Conversion de fichiers
+- [Mockxo](https://nougrr.github.io/mockxo/) — Création de mockups
 
 ## Site
 
 - [NEXO](https://nougrr.github.io/nexo/) - Tous vos outils. Un seul univers
 
-Portail responsive avec animations, thème clair/sombre, recherche (Ctrl/⌘ K), raccourcis 1/2/3/4 et mémorisation de la dernière application ouverte.
+Portail responsive avec animations, thème clair/sombre, recherche (Ctrl/⌘ K), raccourcis 1/2/3/4/5 et mémorisation de la dernière application ouverte.
 
 ## Développement
 

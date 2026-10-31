@@ -70,3 +70,16 @@ body.light{--grid-violet:#8654bc70;--grid-cyan:#278f9d66;--grid-blue:#467cba66}
 /* Fixed SVG geometry keeps the name badges independent of font metrics. */
 .app-icon{flex-shrink:0}
 .app-icon .app-symbol{display:block;width:70%;height:70%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* Mockxo */
+.mockxo{--accent:#f3bb8b}
+.mockup-window{width:190px;border:1px solid #f3bb8b66;border-radius:9px;overflow:hidden;background:linear-gradient(135deg,#49372f,#282128);box-shadow:0 12px 25px #0004;transform:rotate(-6deg);transition:transform .5s}
+.mockup-toolbar{display:flex;gap:5px;padding:10px;border-bottom:1px solid #f3bb8b33}
+.mockup-toolbar i{width:5px;height:5px;border-radius:50%;background:#f3bb8b88}
+.mockup-canvas{height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;color:#f3bb8b}
+.mockup-canvas>span{font-size:40px;line-height:1}
+.mockup-canvas small{font:7px var(--mono);letter-spacing:2px}
+.mockup-chip{position:absolute;top:calc(50% + 46px);left:50%;white-space:nowrap;padding:9px 12px;border:1px solid #f3bb8b55;border-radius:5px;background:#352b29;color:#f3bb8b;font-size:8px;transform:translateX(-20%) rotate(4deg)}
+.app-card:hover .mockup-window{transform:rotate(-2deg) translateY(-4px)}
+.node-m{right:8%;bottom:12%;animation-delay:-1s}
+.node-m>span{border-color:#f3bb8b55;background:linear-gradient(130deg,#49372f,#282128);color:#f3bb8b}
