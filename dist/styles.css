@@ -66,3 +66,7 @@ body.light{--grid-violet:#8654bc70;--grid-cyan:#278f9d66;--grid-blue:#467cba66}
   .video-art .video-screen{margin-left:-100px}
   .video-art .timeline{margin-left:-114px}
 }
+
+/* Fixed SVG geometry keeps the name badges independent of font metrics. */
+.app-icon{flex-shrink:0}
+.app-icon .app-symbol{display:block;width:70%;height:70%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
