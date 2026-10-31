@@ -49,12 +49,20 @@ body.light{--grid-violet:#8654bc70;--grid-cyan:#278f9d66;--grid-blue:#467cba66}
 
 /* Converxo joins the application grid and the NEXO ecosystem. */
 .converxo{--accent:#61dce5}
-.conversion-art{gap:20px}
+.conversion-art{display:flex;align-items:center;justify-content:center;gap:20px}
 .format-file{width:92px;height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;border:1px solid #61dce566;border-radius:8px;background:linear-gradient(135deg,#263c46,#192832);color:#b0f1f5;font:18px var(--mono);box-shadow:0 12px 24px #0003;transform:rotate(-6deg)}
 .format-file:last-child{transform:rotate(6deg)}
 .format-file span{font-size:7px;letter-spacing:2px;color:#80a9b3}
 .conversion-arrow{font-size:32px;color:var(--accent)}
 .node-c{left:8%;bottom:22%;animation-delay:-3s}
 .node-c>span{border-color:#61dce555;background:linear-gradient(130deg,#263c46,#192832);color:#61dce5}
-.app-card:nth-child(4){animation-delay:.55s}
+.app-card:nth-child(4){animation-delay:.45s}
 @media(min-width:761px){.app-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Keep both illustrations centered at every card height. */
+.video-art .video-screen{top:calc(50% - 79px);left:50%;margin-left:-88.5px}
+.video-art .timeline{top:calc(50% + 22px);bottom:auto;left:50%;margin-left:-103.5px}
+@media(max-width:760px){
+  .video-art .video-screen{margin-left:-100px}
+  .video-art .timeline{margin-left:-114px}
+}

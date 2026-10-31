@@ -37,11 +37,18 @@ function updateScrollScene(){
   logo.style.transform=reduced?'':`translate(-50%,-50%) rotateY(${progress*360}deg) rotateZ(${Math.sin(progress*Math.PI)*-8}deg)`;
   introCopy.style.translate=reduced?'':`0 ${-progress*32}px`;
   introCopy.style.opacity=reduced?'':String(1-progress*.45);
+  const grid=$('.app-grid');
+  const columns=getComputedStyle(grid).gridTemplateColumns.split(' ').length;
   for(const element of reveals){
     const rect=element.getBoundingClientRect();
     const index=element.classList.contains('app-card')?[...element.parentElement.children].indexOf(element):0;
-    const stagger=window.innerWidth>760?index*35:0;
-    const value=clamp((viewport*.94-rect.top-stagger)/Math.min(230,viewport*.3));
+    // Cards on the same grid row enter and leave together.
+    const stagger=window.innerWidth>760?Math.floor(index/columns)*35:0;
+    // Measure the layout position without the reveal's own translation.
+    const distance=element.classList.contains('app-card')?70:45;
+    const previous=Number(element.style.getPropertyValue('--reveal')||1);
+    const top=rect.top-(reduced?0:(1-previous)*distance);
+    const value=clamp((viewport*.94-top-stagger)/Math.min(230,viewport*.3));
     // Keep focused links readable even if reached by keyboard before scrolling settles.
     element.style.setProperty('--reveal',reduced||element.contains(document.activeElement)?'1':value.toFixed(3));
   }
